@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -91,7 +91,6 @@
 <script>
     const input1 = document.getElementById('input1');
     const input2 = document.getElementById('input2');
-    const operacao = document.getElementById('operacao');
     const divb = document.getElementById('b');
     const divc = document.getElementById('c');
     const resu = document.getElementById('resu');
@@ -108,6 +107,9 @@
         } else {
             if (input1.value == '' || input2.value == '') {
                 alert('Há valores faltando');
+
+                input1.value = '';
+                input2.value = '';
                 stop();
  
             } else {
@@ -115,23 +117,38 @@
                     altura = input2.value.replace(',', '.');
 
                      imc = Number(peso) / (Number(altura) ** 2);
-                    if(imc < 8)
+                    if(imc < 8){
                         resultado = 'Extremamente abaixo do peso';
-                    else if(imc <= 8 && imc < 15.1)
+                        resu.style.color = 'red';
+                    }     
+                    else if(imc >= 8 && imc < 15.1){
                         resultado = 'Muito abaixo do peso';
-                    else if(imc > 15 && imc < 16.5)
+                        resu.style.color = 'yellow';
+                    }    
+                    else if(imc > 15 && imc < 16.5){
                         resultado = 'Abaixo do peso';
-                    else if(imc >= 16.6 && imc < 24.9)
+                        resu.style.color = 'greenyellow';
+                    }
+                    else if(imc >= 16.6 && imc < 24.9){
                         resultado = 'Peso Ideal';
-                    else if(imc >= 25 && imc < 30)
+                        resu.style.color = 'green'
+                    }    
+                    else if(imc >= 25 && imc < 30){
                         resultado = 'Levemente Acima';
-                    else if(imc >= 30 && imc < 35)
+                        resu.style.color = 'greenyellow';
+                    }    
+                    else if(imc >= 30 && imc < 35){
                         resultado = 'Obesidade grau I';
-                    else if(imc >= 35 && imc < 40)
+                        resu.style.color = 'yellowgreen';
+                    }
+                    else if(imc >= 35 && imc < 40){
                         resultado = 'Obesidade grau II (Severa)';
-                    else if(imc <= 40)
+                        resu.style.color = 'yellow';
+                    }    
+                    else if(imc >= 40){
                         resultado = 'Obesidade grau III (Morbida)';
-                    
+                        resu.style.color = 'red'
+                    }
                 }
                 resu.textContent = Number(Math.round(imc + 'e' + 2) + 'e-' + 2);
                 resu2.textContent = resultado
