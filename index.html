@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: rgb(61, 61, 61);
+        color: white;
+    }
+
+    #c {
+        display: none;
+    }
+
+    .a {
+        height: 275px;
+        width: 300px;
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        padding: 40px;
+        border-radius: 12px;
+        transform: translate(-50%, -50%);
+        background-color: rgb(48, 48, 48);
+    }
+
+    input,
+    button {
+        padding: 12px;
+        border-radius: 20px;
+        margin: 12px;
+        border: 1px solid gray;
+        cursor: auto;
+    }
+
+    button:hover {
+        opacity: 0.90;
+        cursor: pointer;
+        border: 1px solid rgb(85, 85, 85);
+    }
+
+    button:active {
+        opacity: 0.75;
+    }
+    #tabelagradiante{
+        width: 100%;
+        height: 30px;
+        background: linear-gradient(to right, green, yellow, red);
+        position: relative;
+    }
+    #gradienteseta{
+        position: absolute;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        color: white;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 20px solid white;
+        top: 0px;
+    }
+</style>
+
+<body>
+    <div class="a">
+        <div id="b">
+            <div class="d">
+                <input type="text" id="input1" placeholder="Peso">
+                <input type="text" id="input2" placeholder="Altura">
+            </div>
+            <button onclick="calcular()">Calcular</button>
+        </div>
+        <div id="c">
+            <span>O seu imc é</span>
+            <h1 id="resu"></h1>
+            <h2 id="resu2"></h2>
+            <button type="submit" onclick="voltar()">Voltar</button>
+            <div id="tabelagradiante">
+                <div id="gradienteseta"></div>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script>
+    const input1 = document.getElementById('input1');
+    const input2 = document.getElementById('input2');
+    const operacao = document.getElementById('operacao');
+    const divb = document.getElementById('b');
+    const divc = document.getElementById('c');
+    const resu = document.getElementById('resu');
+    const resu2 = document.getElementById('resu2');
+    const gradienteseta = document.getElementById('gradienteseta');
+
+    function calcular() {
+        if (isNaN(input1.value.replace(',', '.')) || isNaN(input2.value.replace(',', '.'))) {
+            alert('Tem que ser um numero');
+
+            input1.value = '';
+            input2.value = '';
+            stop();
+        } else {
+            if (input1.value == '' || input2.value == '') {
+                alert('Há valores faltando');
+
+                input1.value = '';
+                input2.value = '';
+                stop();
+ 
+            } else {
+                    peso = input1.value.replace(',', '.');
+                    altura = input2.value.replace(',', '.');
+
+                    imc = Number(peso) / (Number(altura) ** 2);
+
+                    if(imc < 18.5)
+                        resultado = 'Abaixo do peso';
+                    else if(imc >= 18.6 && imc < 24.9)
+                        resultado = 'Peso Ideal';
+                    else if(imc >= 25 && imc < 30)
+                        resultado = 'Levemente Acima';
+                    else if(imc >= 30 && imc < 35)
+                        resultado = 'Obesidade grau I';
+                    else if(imc >= 35 && imc < 40)
+                        resultado = 'Obesidade grau II (Severa)';
+                    else if(imc > 40)
+                        resultado = 'Obesidade grau III (Morbida)';
+                    
+                }
+                resu.textContent = Number(Math.round(imc + 'e' + 2) + 'e-' + 2);
+                resu2.textContent = resultado
+                divb.style.display = 'none';
+                divc.style.display = 'block';
+
+        
+                
+
+                const limite = Math.min(imc, 40);
+                const arrowPosition = (limite / 40) * 100;
+                gradienteseta.style.left = `${arrowPosition}%`;
+            }
+
+        }
+
+    function voltar() {
+        divb.style.display = 'block';
+        divc.style.display = 'none';
+        input1.value = '';
+        input2.value = '';
+    }
+
+
+</script>
+
+</html>
