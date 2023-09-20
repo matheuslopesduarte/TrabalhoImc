@@ -108,16 +108,13 @@
         } else {
             if (input1.value == '' || input2.value == '') {
                 alert('Há valores faltando');
-
-                input1.value = '';
-                input2.value = '';
                 stop();
  
             } else {
-                    peso = input1.value.replace(',', '.');
-                    altura = input2.value.replace(',', '.');
+                    const peso = input1.value.replace(',', '.');
+                    const altura = input2.value.replace(',', '.');
 
-                    imc = Number(peso) / (Number(altura) ** 2);
+                    const imc = Number(peso) / (Number(altura) ** 2);
                     if(imc < 8)
                         resultado = 'Extremamente abaixo do peso';
                     else if(imc >= 8 && imc < 15.1)
@@ -145,8 +142,8 @@
                 
 
                 const limite = Math.min(imc, 40);
-                const arrowPosition = (limite / 40) * 100;
-                gradienteseta.style.left = `${arrowPosition}%`;
+                const posicao = (limite / 40) * 100;
+                gradienteseta.style.left = `${posicao}%`;
             }
 
         }
@@ -156,6 +153,9 @@
         divc.style.display = 'none';
         input1.value = '';
         input2.value = '';
+        imc = null;
+        resu.textContent = null;
+        resu2.textContent = null;
     }
 
 
