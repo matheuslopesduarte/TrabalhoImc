@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: rgb(61, 61, 61);
+        color: white;
+    }
+
+    #c {
+        display: none;
+    }
+
+    .a {
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        padding: 40px;
+        border-radius: 12px;
+        transform: translate(-50%, -50%);
+        background-color: rgb(48, 48, 48);
+    }
+
+    input,
+    button {
+        padding: 12px;
+        border-radius: 20px;
+        margin: 12px;
+        border: 1px solid gray;
+        cursor: auto;
+    }
+
+    button:hover {
+        opacity: 0.90;
+        cursor: pointer;
+        border: 1px solid rgb(85, 85, 85);
+    }
+
+    button:active {
+        opacity: 0.75;
+    }
+</style>
+
+<body>
+    <div class="a">
+        <div id="b">
+            <div class="d">
+                <h1>Filtro de nomes</h1>
+                <input type="text" id="input" oninput="filtrar()" placeholder="Digite um nome">
+                <div id="itens">
+                    <ul id="lista">
+                        <li>João Silva</li>
+                        <li>Maria Santos</li>
+                        <li>Carlos Pereira</li>
+                        <li>Ana Ferreira</li>
+                        <li>Luís Almeida</li>
+                        <li>Sofia Martins</li>
+                        <li>Paulo Oliveira</li>
+                        <li>Isabel Sousa</li>
+                        <li>Rui Mendes</li>
+                        <li>Marta Rodrigues</li>
+                        <li>André Costa</li>
+                        <li>Laura Gonçalves</li>
+                        <li>José Fernandes</li>
+                        <li>Diana Carvalho</li>
+                        <li>António Ribeiro</li>
+                        <li>Margarida Neves</li>
+                        <li>Fernando Gomes</li>
+                        <li>Raquel Santos</li>
+                        <li>Gonçalo Duarte</li>
+                        <li>Teresa Marques</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+</body>
+<script>
+    const input = document.getElementById('input');
+    const lista = document.getElementById('lista');
+    function filtrar () {
+        const iltro = input.value.toLowerCase();
+        const nomes = lista.getElementsByTagName('li');
+
+        for (let i = 0; i < nomes.length; i++) {
+            const nome = nomes[i].textContent.toLowerCase();
+
+            if(iltro === ''){
+                nomes[i].style.display = 'list-item';
+            } else if (nome.includes(iltro)) {
+                nomes[i].style.display = 'list-item'
+            } else {
+                nomes[i].style.display = 'none';
+            }
+        }
+    }
+</script>
+
+</html>
