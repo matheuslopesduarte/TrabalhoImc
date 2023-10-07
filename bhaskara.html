@@ -52,8 +52,10 @@
     <div class="a">
         <div id="b">
             <div class="d">
-                <h1>Tabuada html</h1>
-                <input id="numero" type="number" placeholder="Diga um numero para calcular">
+                <h1>Calculadora bhaskara html</h1>
+                <input type="text" id="input1" placeholder="Numero A">
+                <input type="text" id="input2" placeholder="Numero B">
+                <input type="text" id="input3" placeholder="Numero C">
             </div>
             <button onclick="calcular()">Calcular</button>
         </div>
@@ -66,33 +68,42 @@
     </div>
 </body>
 <script>
-    const input1 = document.getElementById('numero');
+    const input1 = document.getElementById('input1');
+    const input2 = document.getElementById('input2');
+    const input3 = document.getElementById('input3');
     const divb = document.getElementById('b');
     const divc = document.getElementById('c');
     const resu = document.getElementById('resu');
 
     function calcular() {
-        if (isNaN(input1.value.replace(',', '.'))) {
-            alert('Tem que ser um numero');
-            input.value = '';
-            stop;
-        } else {
-                let resultado = '';
-                for (let c = 1; c <= 10; c++) {
-                    resultado += `${input1.value} x ${c} = ${input1.value * c} <br>`;
-                }
-                resu.innerHTML = resultado;
-                divb.style.display = 'none';
-                divc.style.display = 'block';
-            }
+        let a = input1.value;
+        let b = input2.value;
+        let c = input3.value;
+        let d = (b * b) - 4 * a * c;
 
+        if (a == 0) {
+            alert("a não pode ser 0")
         }
+        else if (d < 0) {
+            alert("não tem raizes reais");
+        } else {
+
+            const x1 = (-b + Math.sqrt(d)) / (2 * a);
+            const x2 = (-b - Math.sqrt(d)) / (2 * a);
+
+            resu.innerHTML = `X1 = ${x1.toFixed(2)}<br>X2 = ${x2.toFixed(2)}`.replace('.',',');
+            divb.style.display = 'none';
+            divc.style.display = 'block';
+        }
+
+    }
 
     function voltar() {
         divb.style.display = 'block';
         divc.style.display = 'none';
         input1.value = '';
         input2.value = '';
+        input3.value = '';
     }
 
 
