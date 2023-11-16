@@ -99,8 +99,8 @@
                 stop();
  
             } else {
-                num1 = input1.value.replace(',', '.');
-                num2 = input2.value.replace(',', '.');
+                num1 = Number(input1.value.replace(',', '.'));
+                num2 = Number(input2.value.replace(',', '.'));
 
                 switch (operacao.value) {
                     case 'divi':
